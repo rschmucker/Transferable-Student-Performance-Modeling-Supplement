@@ -1,19 +1,50 @@
 # TransferableSPM - Appendix
 
-This GitHub repository serves as appendix for the paper *Transferable Student Performance Modeling for Intelligent Tutoring Systems*. It offers detailed descriptions of the individual features and different student performance models (SPMs) which were evaluated in our experiments. It further provides additional experimental results for the inductive transfer experiments.
+This GitHub repository serves as appendix for the paper *Transferable Student Performance Modeling for Intelligent Tutoring Systems* which studies how transfer learning (TL) can be used to train accurate student
+performance models (SPMs) for a new course by leveraging student log data collected from existing courses (Figure 1). This appendix offers detailed descriptions of the individual features and different SPMs which were evaluated in our experiments. It further provides additional experimental results for the inductive transfer experiments. 
+
 
 <p align = "center"><img src = "./figures/concept.png" style="width:55%"></p><p align = "center">
-<i>Figure 1.</i> How can we use interaction log data from existing courses to train a student model for performance predictions in a new course for which only a little or no interaction log data is available?
+<i>Figure 1.</i> Conceptual overview of how transfer learning can leverage  interaction log data from existing courses to train a student model for performance predictions in a new course for which only limited or no interaction log data is available.
 </p>
 
-
-## Feature Descriptions
-
-xxx
 
 ## SPM Descriptions
 
 xxx
+
+
+## Feature Descriptions
+
+Here we provide detailed descriptions of the individual features which were evaluated in our naive transfer experiments (Section 5.2). For each feature we describe its corresponding feature function and its relevant information in the `ElemMath2021` dataset. Our implementation of these features builds on the public [GitHub repository](https://github.com/rschmucker/Large-Scale-Knowledge-Tracing) by Schmucker et al. (2022).
+
+START WITH LIST OF FEATURES
+
+### BASIC FEATURES - START WITH SPM DESCRIPTIONS
+
+* student ability
+* question difficulty
+* KC difficulty
+* total/KC count
+* DAS3H
+* PPE
+* R-PFA
+* Response Pattern
+* Smoothed Average Correct
+
+### ADDITIONAL FEATURES
+
+* current lag time
+* previous response time
+* context one-hot
+* context count
+* difficulty one-hot
+* difficulty count
+* prereq count
+* postreq count
+* videos count
+* readings count
+
 
 ## Additional Inductive Transfer Plots
 
