@@ -14,16 +14,17 @@ performance models (SPMs) for a new course by leveraging student log data collec
 | IRT      | Rasch (1960) |
 | ----------- | ----------- |
 | Name | Item-Response Theory |
-| Prediction      | $p(y_{s, t+1} = 1 \,|\, q_{s, t+1}, \bm{x}_{s, 1:t}) = \sigma \left( w \trans \Phi(q_{s, t+1}, \bm{x}_{s,1:t}) \right)$       |
+| Prediction      | $p(y_{s, t+1} = 1 \,\|\, q_{s, t+1}, \bm{x}_{s, 1:t}) = \sigma \left(w^\intercal \Phi(q_{s, t+1}, \bm{x}_{s,1:t}) \right)$ |
 | Features   | Text        |
 | A-IRT | Computes
 
 | IRT      | Rasch (1960) |
 | ----------- | ----------- |
 | Name | Item-Response Theory |
-| Prediction      | $$p(y_{s, t+1} = 1 \,|\, q_{s, t+1}, \bm{x}_{s, 1:t}) = \sigma \left( w \trans \Phi(q_{s, t+1}, \bm{x}_{s,1:t}) \right)$$       |
+| Prediction      | $$p(y_{s, t+1} = 1 \,\|\, q_{s, t+1}, \bm{x}_{s, 1:t}) = \sigma \left(w^\intercal \Phi(q_{s, t+1}, \bm{x}_{s,1:t}) \right)$$       |
 | Features   | Text        |
 | A-IRT | Computes
+
 
 * IRT (RASCH)
 * PFA
