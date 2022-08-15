@@ -11,14 +11,26 @@ performance models (SPMs) for a new course by leveraging student log data collec
 
 ## SPM Descriptions
 
-xxx
+| IRT      | Rasch (1960) |
+| ----------- | ----------- |
+| Name | Item-Response Theory |
+| Prediction      | $p(y_{s, t+1} = 1 \,|\, q_{s, t+1}, \bm{x}_{s, 1:t}) = \sigma \left( w \trans \Phi(q_{s, t+1}, \bm{x}_{s,1:t}) \right)$       |
+| Features   | Text        |
+| A-IRT | Computes
 
+| IRT      | Rasch (1960) |
+| ----------- | ----------- |
+| Name | Item-Response Theory |
+| Prediction      | $$p(y_{s, t+1} = 1 \,|\, q_{s, t+1}, \bm{x}_{s, 1:t}) = \sigma \left( w \trans \Phi(q_{s, t+1}, \bm{x}_{s,1:t}) \right)$$       |
+| Features   | Text        |
+| A-IRT | Computes
 
-## Feature Descriptions
+* IRT (RASCH)
+* PFA
+* DAS3H
+* Best-LR
+* Best-LR+
 
-Here we provide detailed descriptions of the individual features which were evaluated in our naive transfer experiments (Section 5.2). For each feature we describe its corresponding feature function and its relevant information in the `ElemMath2021` dataset. Our implementation of these features builds on the public [GitHub repository](https://github.com/rschmucker/Large-Scale-Knowledge-Tracing) by Schmucker et al. (2022).
-
-START WITH LIST OF FEATURES
 
 ### BASIC FEATURES - START WITH SPM DESCRIPTIONS
 
@@ -31,6 +43,14 @@ START WITH LIST OF FEATURES
 * R-PFA
 * Response Pattern
 * Smoothed Average Correct
+
+
+## Feature Descriptions
+
+Here we provide detailed descriptions of the individual features which were evaluated in our naive transfer experiments (Section 5.2). For each feature we describe its corresponding feature function and its relevant information in the `ElemMath2021` dataset. Our implementation of these features builds on the public [GitHub repository](https://github.com/rschmucker/Large-Scale-Knowledge-Tracing) by Schmucker et al. (2022).
+
+START WITH LIST OF FEATURES
+
 
 ### ADDITIONAL FEATURES
 
