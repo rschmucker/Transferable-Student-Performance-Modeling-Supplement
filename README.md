@@ -3,7 +3,6 @@
 This GitHub repository serves as appendix for the paper *Transferable Student Performance Modeling for Intelligent Tutoring Systems* which studies how transfer learning (TL) can be used to train accurate student
 performance models (SPMs) for a new course by leveraging student log data collected from existing courses (Figure 1). This appendix offers detailed descriptions of the individual features and different SPMs which were evaluated in our experiments. It further provides additional experimental results for the inductive transfer experiments. 
 
-
 <p align = "center"><img src = "./figures/concept.png" style="width:55%"></p><p align = "center">
 <i>Figure 1.</i> Conceptual overview of how transfer learning can leverage  interaction log data from existing courses to train a student model for performance predictions in a new course for which only limited or no interaction log data is available.
 </p>
@@ -116,21 +115,21 @@ A-Best-LR+: This model builds on the A-Best-LR feature set and adds Best-LR+'s r
 
 Here we provide detailed descriptions of the individual features which were evaluated in our naive transfer experiments (Section 5.2). For each feature we describe its corresponding feature function and its relevant information in the `ElemMath2021` dataset. Our implementation of these features builds on the public [GitHub repository](https://github.com/rschmucker/Large-Scale-Knowledge-Tracing) by Schmucker et al. (2022).
 
-START WITH LIST OF FEATURES
+All of the count features below were subjected to scaling function $\phi(x) = \log(1 + x)$.
 
+| Feature      | Description |
+| ----------- | ----------- |
+| current lag time      | We measures the time passed between the completion of the previous quesiton until display of the current question (Shin et al., 2021). We provide this current lag time information to the model in two forms: (i) We subject the current lag time to scaling function $\phi$. (ii) We round the current lag time to integer minutes and assign it to one of 150 categories $\lbrace 0, 1, 2, 3, 4, 5, 10, 20, \dots, 1440 \rbrace$. We then encode these categories using a one-hot encoding.           |  
+| previous response time   | We measures the time passed between the display of the previous quesiton until response submission to the previous question (Shin et al., 2021). We provide this previous response time information to the model in two forms: (i) We subject the previous response time to scaling function $\phi$. (ii) We round the previous response time to integer seconds and assign it to one of 300 categories $\lbrace 0, 1, 2, 3, \dots, 300 \rbrace$. We then encode these categories using a one-hot encoding.        |
+| context one-hot     | `ElemMath2021` records information about the learning context by assigning each learning activity to one of six categories of study modules (e.g., pre-test, post-test, review, …). We use this information to define a one-hot encoding which informs the model about the current learning context a student is placed in.        |
+| context count     | `ElemMath2021` records information about the learning context by assigning each learning activity to one of six categories of study modules (e.g., pre-test, post-test, review, …). When student $s$ attempts a question targeting KC $k$ we determine the number of prior correct responses and number of prior overall attempts on questions that target KC $k$ for each study module.           |
+| difficulty one-hot     | During content creation, human domain experts assigned each question a difficulty label in $\lbrace 10, 20, \dots,90 \rbrace$. Corresponding to these labels we define difficulty parameters $\delta\_{10}, \delta\_{20}, \dots, \delta\_{90}$ and define a one-hot encoding which informs the model about which difficulty parameter represents which questions.       |
+| difficulty count     | During content creation, human domain experts assigned each question a difficulty label in $\lbrace 10, 20, \dots,90 \rbrace$. When student $s$ attempts a question targeting KC $k$ we determine the number of prior correct responses and number of prior overall attempts on questions that target KC $k$ for each difficulty label.         |
+| prereq count     | Using the KC prerequisite graph, we determine student s's number of prior correct responses and number of overall attempts on KCs which are prerequistes to the KC of the current question.           |
+| postreq count     | Using the KC prerequisite graph, we determine student s's number of prior correct responses and number of overall attempts on KCs which are postrequistes to the KC of the current question.        |
+| videos count     | We compute (i) the total number of videos student $s$ has watched before and (ii) the number of videos student $s$ has watched before that target the KC of the current question. |
+| readings count     | We compute (i) the total number of reading materials student $s$ has interacted with before and (ii) the number of reading materials student $s$ has interacted with before that target the KC of the current question.         |
 
-### ADDITIONAL FEATURES
-
-* current lag time
-* previous response time
-* context one-hot
-* context count
-* difficulty one-hot
-* difficulty count
-* prereq count
-* postreq count
-* videos count
-* readings count
 
 
 ## Additional Inductive Transfer Plots
