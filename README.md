@@ -1,7 +1,7 @@
 # TransferableSPM - Appendix
 
 This GitHub repository serves as appendix for the paper *Transferable Student Performance Modeling for Intelligent Tutoring Systems*. The paper studies how transfer learning (TL) can be used to train accurate student
-performance models (SPMs) for new courses by leveraging student log data collected from existing courses (Figure 1). We provide detailed descriptions of the individual features and different SPMs which were evaluated in our experiments. We further provide additional experimental results for the inductive transfer experiments. Below is the feature set which yielded the best transer performance. 
+performance models (SPMs) for new courses by leveraging student log data collected from existing courses (Figure 1). We provide detailed descriptions of the individual features and different SPMs which were evaluated in our experiments. We further provide additional experimental results for the inductive transfer experiments. Below is the feature set which yielded the best transfer performance. 
 
 <p align = "center"><img src = "./figures/concept.png" style="width:55%"></p><p align = "center">
 <i>Figure 1.</i> Conceptual overview of how transfer learning can leverage  interaction log data from existing courses to train a student model for performance predictions in a new course for which only limited or no interaction log data is available.
@@ -31,7 +31,7 @@ More detailed descriptions of the individual features can be found below.
 
 ## SPM Descriptions
 
-Here we provide descriptions of the different SPMs which were evaluated in our experiments. For each SPM we look at its underlying feature set and identify a reduced feature set which induces a course-agnosic SPM that does not require target course data for training. By avoiding course-specific features course-agnostic SPMs can be trained on source data $D_S$ from existing courses and then can be used for any new target course $T$.
+Here we provide descriptions of the different SPMs which were evaluated in our experiments. For each SPM we look at its underlying feature set and identify a reduced feature set which induces a course-agnostic SPM that does not require target course data for training. By avoiding course-specific features course-agnostic SPMs can be trained on source data $D_S$ from existing courses and then can be used for any new target course $T$.
 
 ### Performance Factor Analysis (PFA) - (Pavlik et al., 2009)
 
@@ -127,9 +127,9 @@ Best-LR+: This model builds on the Best-LR feature set and adds the following ad
   * Response patterns
   * Smoothed average correctness
 
-For detailed definitions of each individual feature we refer to the Best-LR+ [paper](https://jedm.educationaldatamining.org/index.php/JEDM/article/view/541).
+For detailed definitions of each individual feature, we refer to the Best-LR+ [paper](https://jedm.educationaldatamining.org/index.php/JEDM/article/view/541).
 
-A-Best-LR+: This model builds on the A-Best-LR feature set and adds Best-LR+'s response pattern and smoothed average correctness features. In addition it trains a single set DAS3H time-window, R-PFA and PPE parameters shared for all KCs.
+A-Best-LR+: This model builds on the A-Best-LR feature set and adds Best-LR+'s response pattern and smoothed average correctness features. In addition, it trains a single set DAS3H time-window, R-PFA and PPE parameters shared for all KCs.
 
 
 ## Feature Descriptions
@@ -140,14 +140,14 @@ All of the count features below were subjected to scaling function $\phi(x) = \l
 
 | Feature      | Description |
 | ----------- | ----------- |
-| current lag time      | We measures the time passed between the completion of the previous quesiton until display of the current question (Shin et al., 2021). We provide this current lag time information to the model in two forms: (i) We subject the current lag time to scaling function $\phi$. (ii) We round the current lag time to integer minutes and assign it to one of 150 categories $\lbrace 0, 1, 2, 3, 4, 5, 10, 20, \dots, 1440 \rbrace$. We then encode these categories using a one-hot encoding.           |  
-| previous response time   | We measures the time passed between the display of the previous quesiton until response submission to the previous question (Shin et al., 2021). We provide this previous response time information to the model in two forms: (i) We subject the previous response time to scaling function $\phi$. (ii) We round the previous response time to integer seconds and assign it to one of 300 categories $\lbrace 0, 1, 2, 3, \dots, 300 \rbrace$. We then encode these categories using a one-hot encoding.        |
+| current lag time      | We measures the time passed between the completion of the previous question until display of the current question (Shin et al., 2021). We provide this current lag time information to the model in two forms: (i) We subject the current lag time to scaling function $\phi$. (ii) We round the current lag time to integer minutes and assign it to one of 150 categories $\lbrace 0, 1, 2, 3, 4, 5, 10, 20, \dots, 1440 \rbrace$. We then encode these categories using a one-hot encoding.           |  
+| previous response time   | We measures the time passed between the display of the previous question until response submission to the previous question (Shin et al., 2021). We provide this previous response time information to the model in two forms: (i) We subject the previous response time to scaling function $\phi$. (ii) We round the previous response time to integer seconds and assign it to one of 300 categories $\lbrace 0, 1, 2, 3, \dots, 300 \rbrace$. We then encode these categories using a one-hot encoding.        |
 | context one-hot     | `ElemMath2021` records information about the learning context by assigning each learning activity to one of six categories of study modules (e.g., pre-test, post-test, review, …). We use this information to define a one-hot encoding which informs the model about the current learning context a student is placed in.        |
 | context count     | `ElemMath2021` records information about the learning context by assigning each learning activity to one of six categories of study modules (e.g., pre-test, post-test, review, …). When student $s$ attempts a question targeting KC $k$ we determine the number of prior correct responses and number of prior overall attempts on questions that target KC $k$ for each study module.           |
 | difficulty one-hot     | During content creation, human domain experts assigned each question a difficulty label in $\lbrace 10, 20, \dots,90 \rbrace$. Corresponding to these labels we define difficulty parameters $\delta\_{10}, \delta\_{20}, \dots, \delta\_{90}$ and define a one-hot encoding which informs the model about which difficulty parameter represents which questions.       |
 | difficulty count     | During content creation, human domain experts assigned each question a difficulty label in $\lbrace 10, 20, \dots,90 \rbrace$. When student $s$ attempts a question targeting KC $k$ we determine the number of prior correct responses and number of prior overall attempts on questions that target KC $k$ for each difficulty label.         |
-| prereq count     | Using the KC prerequisite graph, we determine student s's number of prior correct responses and number of overall attempts on KCs which are prerequistes to the KC of the current question.           |
-| postreq count     | Using the KC prerequisite graph, we determine student s's number of prior correct responses and number of overall attempts on KCs which are postrequistes to the KC of the current question.        |
+| prereq count     | Using the KC prerequisite graph, we determine student s's number of prior correct responses and number of overall attempts on KCs which are prerequiste to the KC of the current question.           |
+| postreq count     | Using the KC prerequisite graph, we determine student s's number of prior correct responses and number of overall attempts on KCs which are postrequiste to the KC of the current question.        |
 | videos count     | We compute (i) the total number of videos student $s$ has watched before and (ii) the number of videos student $s$ has watched before that target the KC of the current question. |
 | readings count     | We compute (i) the total number of reading materials student $s$ has interacted with before and (ii) the number of reading materials student $s$ has interacted with before that target the KC of the current question.         |
 
