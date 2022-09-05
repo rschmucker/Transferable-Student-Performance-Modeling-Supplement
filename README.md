@@ -1,12 +1,33 @@
 # TransferableSPM - Appendix
 
-This GitHub repository serves as appendix for the paper *Transferable Student Performance Modeling for Intelligent Tutoring Systems* which studies how transfer learning (TL) can be used to train accurate student
-performance models (SPMs) for a new course by leveraging student log data collected from existing courses (Figure 1). This appendix offers detailed descriptions of the individual features and different SPMs which were evaluated in our experiments. It further provides additional experimental results for the inductive transfer experiments. 
+This GitHub repository serves as appendix for the paper *Transferable Student Performance Modeling for Intelligent Tutoring Systems*. The paper studies how transfer learning (TL) can be used to train accurate student
+performance models (SPMs) for new courses by leveraging student log data collected from existing courses (Figure 1). We provide detailed descriptions of the individual features and different SPMs which were evaluated in our experiments. We further provide additional experimental results for the inductive transfer experiments. Below is the feature set which yielded the best transer performance. 
 
 <p align = "center"><img src = "./figures/concept.png" style="width:55%"></p><p align = "center">
 <i>Figure 1.</i> Conceptual overview of how transfer learning can leverage  interaction log data from existing courses to train a student model for performance predictions in a new course for which only limited or no interaction log data is available.
 </p>
 
+## Feature Set with Best Transfer Performance 
+
+In our experiments we found the following set of features to be most effective for training a model on data from existing courses and using it to make predictions for a new course:
+
+  * single ability parameter shared for all students
+  * number of all prior correct responses of student $s$
+  * number of all prior incorrect responses of student $s$
+  * number of prior correct responses of student $s$ for KC $k$
+  * number of prior incorrect responses of student $s$ for KC $k$
+  * R-PFA's recency-weighted incorrectness count and success proportion features
+  * PPE’s spacing time features 
+  * DAS3H’s time window-based count features
+  * Response patterns
+  * Smoothed average correctness
+  * SAINT+'s current lag time and prior response time features
+  * learning context one-hot and count features
+  * difficulty one-hot and count features
+
+All count features were subjected to scaling function $\phi(x) = \log(1 + x)$. A single set of model parameters is trained for all KCs. At prediction time our model only uses KC count information related to the KCs of the current question. Information about the students attempts on other unrelated KCs does not go into the prediction.
+
+More detailed descriptions of the individual features can be found below.
 
 ## SPM Descriptions
 
